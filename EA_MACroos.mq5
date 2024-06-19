@@ -6,7 +6,7 @@
 #property copyright "Aryan Salemabadi"
 #property link      "https://github.com/aryan-salemababdi"
 #property version   "1.00"
-
+#include  <Trade/Trade.mqh>
 //+------------------------------------------------------------------+
 //| Input Parameters                          |
 //+------------------------------------------------------------------+
@@ -42,7 +42,7 @@ double ma_slow_buffer[];
 //+------------------------------------------------------------------+
 MqlRates candle[];
 MqlTick tick;
-
+CTrade trade;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -78,7 +78,7 @@ void OnTick()
   {
 //---
 
-         
+   if(){}
       
   }
 //+------------------------------------------------------------------+
@@ -87,7 +87,30 @@ void OnTick()
 //+------------------------------------------------------------------+
 //| Functions for auto trading                                                     |
 //+------------------------------------------------------------------+
+   
+void openBuyPosition(){
+   double price = NormalizeDouble(tick.ask, _Digits);
+   double slPrice = price - NormalizeDouble(SL*_Point, _Digits);
+   double tkPrice = price - NormalizeDouble(TK*_Point, _Digits);
+   trade.Buy(lots_vol, _Symbol, price, slPrice, tkPrice, );
+   
+};
 
+void openSellPosition(){
+   double price = NormalizeDouble(tick.bid, _Digits);
+   double slPrice = price + NormalizeDouble(SL*_Point, _Digits);
+   double tkPrice = price - NormalizeDouble(TK*_Point, _Digits);
+   trade.Sell(lots_vol, _Symbol, price, slPrice, tkPrice, );
+};
+
+
+void exitFromBuyPosition(){
+
+};
+
+void exitFromSellPosition(){
+
+};
 
 //+------------------------------------------------------------------+
 //|Functions for signaling and strategy visualization                                       |
